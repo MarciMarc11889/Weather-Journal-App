@@ -30,5 +30,5 @@ const port = 3000;
 const server = app.listen(port, listening);
  function listening(){
     console.log(server);
-    console.log(`running on localhost: ${port}`);
+    console.log(`Server is running on localhost: ${port}`);
   };
