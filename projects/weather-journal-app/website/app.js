@@ -21,8 +21,8 @@ const postData = async ( url = '', data = {})=>{
         console.log(newData);
         return newData
       }catch(error) {
-      console.log("error", error);
       // appropriately handle the error
+      console.log("error", error);
       }
   }
 
