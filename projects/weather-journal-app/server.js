@@ -36,8 +36,8 @@ const server = app.listen(port, listening);
   // GET route
 app.get('/all', sendData);
 
-function sendData (request, response) {
-  response.send(projectData);
+function sendData (req, res) {
+  res.send(projectData);
 };
 
 // POST route
