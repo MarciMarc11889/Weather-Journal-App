@@ -39,3 +39,10 @@ app.get('/all', sendData);
 function sendData (request, response) {
   response.send(projectData);
 };
+
+// POST route
+app.post('/add', callBack);
+
+function callBack(req,res){
+  res.send('POST received');
+}
