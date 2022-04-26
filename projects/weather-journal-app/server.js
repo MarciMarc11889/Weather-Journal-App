@@ -32,3 +32,10 @@ const server = app.listen(port, listening);
     console.log(server);
     console.log(`Server is running on localhost: ${port}`);
   };
+
+  // GET route
+app.get('/all', sendData);
+
+function sendData (request, response) {
+  response.send(projectData);
+};
