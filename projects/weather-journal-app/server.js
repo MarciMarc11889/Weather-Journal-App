@@ -1,3 +1,5 @@
+projectData = {};
+
 // Require Express to run server and routes
 const express = require('express');
 
@@ -30,7 +32,7 @@ const server = app.listen(port, listening);
     console.log(`Server is running on localhost: ${port}`);
   };
 
-const projectData = [];
+
 
   // GET route
 app.get('/all', sendData);
@@ -44,13 +46,13 @@ app.post('/data', addData);
 
 function addData (req,res){
 
-  // projectData = req.body
+  projectData ={
 
-    // temperature: req.body.temperature,
-    // date: req.body.date,
-    // user_response: req.body.user_response
-  // } 
-    projectData.push(req.body)
-    res.send(projectData)
+    temperature: req.body.temperature,
+    date: req.body.date,
+    userResponse: req.body.userResponse
+  }; 
+    // projectData.push(req.body);
+    res.send(projectData);
     console.log(projectData);
 }
