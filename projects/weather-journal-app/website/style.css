@@ -6,7 +6,7 @@ body{
 #app{
     display: grid;
     grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
+    grid-template-columns: repeat(3, 1fr);
     height:100vh;
     background: #f23557;
     color: #f0d43a;
