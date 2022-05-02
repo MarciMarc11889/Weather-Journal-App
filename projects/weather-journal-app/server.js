@@ -45,14 +45,14 @@ function sendData (req, res) {
 app.post('/data', addData);
 
 function addData (req,res){
-
+console.log(req.body);
   projectData ={
 
-    temperature: req.body.temperature,
-    date: req.body.date,
-    userResponse: req.body.userResponse
+    temp: req.body.getTemp,
+    date: req.body.newDate,
+    feel: req.body.feel
   }; 
     // projectData.push(req.body);
     res.send(projectData);
-    console.log(projectData);
+    // console.log(projectData);
 }
