@@ -1,5 +1,5 @@
 // WEB API 
-
+// Global Variables
 let ZipURL = 'http://api.openweathermap.org/geo/1.0/zip?zip=', // {zip code},{country code}&appid={API key}'
     WeatherURL= 'https://api.openweathermap.org/data/2.5/weather?lat=',
     apiKey = '&appid=a448a4a826b1fca8eaa50dcd50dbc65d&units=imperial',
@@ -7,19 +7,24 @@ let ZipURL = 'http://api.openweathermap.org/geo/1.0/zip?zip=', // {zip code},{co
     lon = 0,
     geoData = {lat, lon};
 
+// Listen to "Generate" Button 
 document.getElementById('generate').addEventListener('click', performAction);
 
+// Function after clicking on "Generate" 
 function performAction(e) {
   const enteredZip = document.getElementById('zip').value;
+  const feel = document.getElementById('feelings').value;
   getZipData(ZipURL, enteredZip, apiKey)
 
-  .then(() => {
-  getWeatherData(WeatherURL, geoData.lat, geoData.lon, apiKey)
+  .then(() => getWeatherData(WeatherURL, geoData.lat, geoData.lon, apiKey))
 
-  .then(data => console.log(data))
-  
-  });
-  
+  .then(data =>{
+    const getTemp =data.main.temp;
+    return getTemp;
+  })
+
+  .then(getTemp => postData('/data', {getTemp, newDate, feel}))
+  .then(retrieveData());
 }
 
 const getZipData = async (ZipURL, enteredZip, apiKey) => {
@@ -28,14 +33,13 @@ const getZipData = async (ZipURL, enteredZip, apiKey) => {
 
     try {
       const data = await res.json();
-
-     lat = data.lat;
-     lon = data.lon;
-
-     geoData= {
-       lat,
-       lon
-     };
+      
+      lat = data.lat;
+      lon = data.lon;
+      geoData= {
+        lat,
+        lon
+      };
 
       return geoData;
     }
@@ -45,14 +49,12 @@ const getZipData = async (ZipURL, enteredZip, apiKey) => {
 }
 
 const getWeatherData = async (WeatherURL, lat, lon, apiKey) => {
- 
 
   const res = await fetch (WeatherURL+lat+'&lon='+lon+apiKey)
   
     try {
       const data = await res.json();
       return data;
-    
     }
     catch(error) {
       console.log("error", error);
@@ -77,8 +79,7 @@ const postData = async ( url = '', data = {})=>{
   
       try {
         const newData = await response.json();
-        console.log(newData);
-        return newData
+
       }catch(error) {
       // appropriately handle the error
       console.log("error", error);
@@ -92,17 +93,12 @@ const postData = async ( url = '', data = {})=>{
     const allData = await request.json()
     console.log(allData)
     // Write updated data to DOM elements
-    document.getElementById('temp').innerHTML = Math.round(allData.temp)+ 'degrees';
+    document.getElementById('temp').innerHTML = Math.round(allData.temp)+ ' degrees';
     document.getElementById('content').innerHTML = allData.feel;
-    document.getElementById("date").innerHTML =allData.date;
+    document.getElementById("date").innerHTML ='<br>' + allData.date;
     }
     catch(error) {
       console.log("error", error);
       // appropriately handle the error
     }
    }
-
-    // TODO-Call Function
-  
-    // postData('/data', {temperature:34, date: newDate, userResponse:'Hello'});
-    // postData('/data', {animal:'tiger'})
