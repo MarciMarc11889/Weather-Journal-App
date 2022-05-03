@@ -7,6 +7,10 @@ let ZipURL = 'http://api.openweathermap.org/geo/1.0/zip?zip=', // {zip code},{co
     lon = 0,
     geoData = {lat, lon};
 
+// Create a new date instance dynamically with JS
+let d = new Date();
+let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+
 // Listen to "Generate" Button 
 document.getElementById('generate').addEventListener('click', performAction);
 
@@ -24,7 +28,7 @@ function performAction(e) {
   })
 
   .then(getTemp => postData('/data', {getTemp, newDate, feel}))
-  .then(retrieveData());
+  .then(() => retrieveData());
 }
 
 const getZipData = async (ZipURL, enteredZip, apiKey) => {
@@ -60,11 +64,6 @@ const getWeatherData = async (WeatherURL, lat, lon, apiKey) => {
       console.log("error", error);
   }
 }
-
-// Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
-
 /* Function to POST data */
 const postData = async ( url = '', data = {})=>{
     console.log(data)
@@ -79,6 +78,7 @@ const postData = async ( url = '', data = {})=>{
   
       try {
         const newData = await response.json();
+        console.log(newData);
 
       }catch(error) {
       // appropriately handle the error
@@ -95,7 +95,7 @@ const postData = async ( url = '', data = {})=>{
     // Write updated data to DOM elements
     document.getElementById('temp').innerHTML = Math.round(allData.temp)+ ' degrees';
     document.getElementById('content').innerHTML = allData.feel;
-    document.getElementById("date").innerHTML ='<br>' + allData.date;
+    document.getElementById("date").innerHTML = allData.date;
     }
     catch(error) {
       console.log("error", error);
