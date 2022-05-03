@@ -1,15 +1,17 @@
 body{
-    background: #fffff8;
+    background: #3b4a6b;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #app{
     display: grid;
-    grid-template-rows:  repeat(3, 1fr);
+    height: 50vh;
+    grid-template-rows:  repeat(4, 1fr);
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas: 
     "hd hd hd hd"
-    "cn cn cn cn"
+    "zip zip feel feel"
+    "zip zip feel feel"
     "ft ft ft ft"
     ;
     height:100vh;
@@ -27,40 +29,48 @@ body{
 
 .entry{
     grid-area: ft;
+    margin: 20px;
     background: rgba(59, 74, 107, .4);
 }
 
 #entryHolder{
-    
+    margin: 20px;
 }
 
 #date{
-
+    transition: all 1s;
 }
 
 #temp{
-
+    transition: all 1s;
 }
 
 #content{
-
+    transition: all 1s;
 }
 
 .headline {
+    font-size: 50px;
+    margin: 20px;
     grid-area: hd;
 }
 .title{
+    margin: 20px;
     grid-area: ft;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label{
-    display:block;
     font-size: 27px;
 }
 
+.zip{
+    margin: 10px;
+    grid-area: zip;
+}
+
 input{
-    display:block;
+    display:flex;
     height: 60px;
     width: 320px;
     background:#22b2da;
@@ -68,10 +78,12 @@ input{
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     border: none;
+    border-radius: 10px;
 }
 
 button{
-    grid-area: cn;
+    grid-area: feel;
+    align-items: center;
     width: 100px;
     height: 100px;
     background: #3b4a6b;
@@ -86,7 +98,7 @@ button{
 
 button:hover{
     background: #84a5ed;
-    width: 400px;
+    width: 420px;
 }
 
 h1{
@@ -94,6 +106,7 @@ h1{
 }
 
 textarea{
+    grid-area: feel;
     background:#22b2da;
     color: #f0d43a;
     font-size: 20px;
@@ -102,24 +115,26 @@ textarea{
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
+textarea:focus{
+    outline: solid;
 }
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */ 
+    padding: 10px;
     color: #f0d43a; 
     font-family: 'Oswald', sans-serif;
 
 } 
   
 :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+    margin: 5px;
     color: #f0d43a; 
     font-family: 'Oswald', sans-serif;
 
 } 
   
 ::-ms-input-placeholder { /* Microsoft Edge */ 
+    margin: 5px;
     color: #f0d43a; 
     font-family: 'Oswald', sans-serif;
 
