@@ -31,6 +31,7 @@ function performAction(e) {
   .then(() => retrieveData());
 }
 
+// get latitude and longitude of zip code 
 const getZipData = async (ZipURL, enteredZip, apiKey) => {
  
   const res = await fetch (ZipURL+enteredZip+apiKey)
@@ -52,6 +53,7 @@ const getZipData = async (ZipURL, enteredZip, apiKey) => {
   }
 }
 
+// get weather data in entered zip code 
 const getWeatherData = async (WeatherURL, lat, lon, apiKey) => {
 
   const res = await fetch (WeatherURL+lat+'&lon='+lon+apiKey)
@@ -64,6 +66,7 @@ const getWeatherData = async (WeatherURL, lat, lon, apiKey) => {
       console.log("error", error);
   }
 }
+
 /* Function to POST data */
 const postData = async ( url = '', data = {})=>{
     console.log(data)
@@ -81,11 +84,12 @@ const postData = async ( url = '', data = {})=>{
         console.log(newData);
 
       }catch(error) {
+
       // appropriately handle the error
       console.log("error", error);
       }
   }
-
+// retrieve data from localhost and update UI 
   const retrieveData = async () =>{
     const request = await fetch('/all');
     try {
