@@ -5,32 +5,51 @@ body{
 
 #app{
     display: grid;
-    height: 50vh;
     grid-template-rows:  repeat(4, 1fr);
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr 1fr;
     grid-template-areas: 
-    "hd hd hd hd"
-    "zip zip feel feel"
-    "zip zip feel feel"
-    "ft ft ft ft"
-    ;
-    height:100vh;
+    "hd hd"
+    "zip feel"
+    "zip feel"
+    "ft ft";
+    height:98vh;
+    width: 98vw;
     background: #f23557;
     color: #f0d43a;
-    justify-content: center;
-    grid-gap: 1em;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
+    transition: ease 1s;
+    border-radius: 10px;
 }
 
 .holder{
+    margin:20px;
+    transition: all 1s;
 
 }
 
 .entry{
+    display:block;
     grid-area: ft;
     margin: 20px;
     background: rgba(59, 74, 107, .4);
+    border-radius: 10px;
+}
+
+.feel{
+    grid-area: feel;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.zip{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding:10px;
+    grid-area: zip;
 }
 
 #entryHolder{
@@ -38,15 +57,15 @@ body{
 }
 
 #date{
-    transition: all 1s;
+    color: rgb(87, 196, 230);
 }
 
 #temp{
-    transition: all 1s;
+    color: rgb(87, 196, 230);
 }
 
 #content{
-    transition: all 1s;
+    color: rgb(87, 196, 230);
 }
 
 .headline {
@@ -61,18 +80,13 @@ body{
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label{
+    margin: 20px;
     font-size: 27px;
 }
 
-.zip{
-    margin: 10px;
-    grid-area: zip;
-}
-
 input{
-    display:flex;
     height: 60px;
-    width: 320px;
+    width: auto;
     background:#22b2da;
     color: #f0d43a;
     font-size: 20px;
@@ -82,10 +96,8 @@ input{
 }
 
 button{
-    grid-area: feel;
-    align-items: center;
-    width: 100px;
-    height: 100px;
+    width: 10vw;
+    height: 10vh;
     background: #3b4a6b;
     color: #f0d43a;
     font-size: 26px;
@@ -93,7 +105,7 @@ button{
     border: none;
     border-radius: 10px;
     box-shadow: 2px 4px 5px #444;
-    transition: all 1s;
+    transition: ease 1s;
 }
 
 button:hover{
@@ -106,11 +118,14 @@ h1{
 }
 
 textarea{
-    grid-area: feel;
+    width: 30vw;
+    max-width: 30vw;
+    margin:10px;
     background:#22b2da;
     color: #f0d43a;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
+    border-radius: 10px;
 }
 /* Reset style for HTML element on active to have no border*/
 input:focus,
