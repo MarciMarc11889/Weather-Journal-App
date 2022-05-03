@@ -33,12 +33,11 @@ const server = app.listen(port, listening);
     console.log(`Server is running on localhost: ${port}`);
   };
 
-
-
   // GET route
 app.get('/all', sendData);
 
 function sendData (req, res) {
+  console.log(projectData);
   res.send(projectData);
 };
 
@@ -53,7 +52,6 @@ console.log(req.body);
     date: req.body.newDate,
     feel: req.body.feel
   }; 
-    // projectData.push(req.body);
-    res.send(projectData);
-    // console.log(projectData);
+
+  res.send(projectData);
 }
