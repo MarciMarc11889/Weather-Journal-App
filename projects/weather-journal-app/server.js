@@ -1,3 +1,4 @@
+// Reset variable projectData 
 projectData = {};
 
 // Require Express to run server and routes
