@@ -18,6 +18,12 @@ document.getElementById('generate').addEventListener('click', performAction);
 function performAction(e) {
   const enteredZip = document.getElementById('zip').value;
   const feel = document.getElementById('feelings').value;
+
+    //   //Remove fade class from DOM elements
+    document.getElementById('temp').classList ='';
+    document.getElementById('content').classList ='';
+    document.getElementById("date").classList ='';
+
   getZipData(ZipURL, enteredZip, apiKey)
 
   .then(() => getWeatherData(WeatherURL, geoData.lat, geoData.lon, apiKey))
@@ -30,6 +36,7 @@ function performAction(e) {
   .then(getTemp => postData('/data', {getTemp, newDate, feel}))
   .then(() => retrieveData());
 }
+
 
 // get latitude and longitude of zip code 
 const getZipData = async (ZipURL, enteredZip, apiKey) => {
@@ -98,8 +105,12 @@ const postData = async ( url = '', data = {})=>{
     console.log(allData);
     // Write updated data to DOM elements
     document.getElementById('temp').innerHTML = Math.round(allData.temp)+ ' degrees';
+    document.getElementById('temp').classList = 'fade';
     document.getElementById('content').innerHTML = allData.feel;
+    document.getElementById('content').classList = 'fade';
     document.getElementById("date").innerHTML = allData.date;
+    document.getElementById("date").classList = 'fade';
+
     }
     catch(error) {
       console.log("error", error);
