@@ -1,11 +1,11 @@
 // WEB API 
 // Global Variables
-const ZipURL = 'http://api.openweathermap.org/geo/1.0/zip?zip=', // {zip code},{country code}&appid={API key}'
-      WeatherURL= 'https://api.openweathermap.org/data/2.5/weather?lat=', //BaseURL
-      apiKey = '&appid=a448a4a826b1fca8eaa50dcd50dbc65d&units=metric'; //Temp in Celsius
-let   lat = 0, 
-      lon = 0,
-      geoData = {lat, lon};
+const geoNamesURL = 'api.geonames.org/searchJSON?'
+      pixaBayURL ='https://pixabay.com/api/'
+      apiKeyPixabay='27995832-6c0e40861203c9351e312e73c'
+      CurrentWeatherURL ='https://api.weatherbit.io/v2.0/current' //Only supports GET request
+      ForecastWeatherURL ='https://api.weatherbit.io/v2.0/forecast/daily' //Only supports GET request
+      apiKeyWeatherbit='2130296c39a7402da71ece28eff267f9'
 
 // Create a new date instance dynamically with JS
 let d = new Date();
