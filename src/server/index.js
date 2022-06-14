@@ -1,12 +1,13 @@
-// const getLatLon = require('./getLatLon.js')
-
+var path = require("path");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
+const express = require("express");
 
 // Reset variable projectData
 // projectData = {};
 
 // Require Express to run server and routes
-const express = require("express");
 
 // Start up an instance of app
 
@@ -14,10 +15,9 @@ const app = express();
 
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
-const bodyParser = require("body-parser");
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-const cors = require("cors");
 
 // Cors for cross origin allowance
 app.use(cors(""));
@@ -154,3 +154,7 @@ app.post("/data", addData);
 function addData(req, res) {
   res.send(projectData);
 }
+
+app.get('/', function (req, res) {
+  res.sendFile('dist/index.html')
+})

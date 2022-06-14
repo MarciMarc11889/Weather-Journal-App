@@ -1,3 +1,5 @@
+import { builtinModules } from "module";
+
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
@@ -67,3 +69,5 @@ const retrieveData = async () => {
     // appropriately handle the error
   }
 };
+
+export { performAction }
