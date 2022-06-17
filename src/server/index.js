@@ -4,13 +4,16 @@ const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const express = require("express");
 
-// Reset variable projectData
-// projectData = {};
+let name = "";
+let geo = {
+  lat: 0,
+  long: 0
+};
 
-// Require Express to run server and routes
+// Reset variable projectData
+projectData = {};
 
 // Start up an instance of app
-
 const app = express();
 
 /* Middleware*/
@@ -28,16 +31,45 @@ app.use(express.static("dist"));
 // To avoid an error with ssl-certificate
 // process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
+// Setup Server
+
+const port = 3000;
+
+const server = app.listen(port, listening);
+function listening() {
+  console.log(server);
+  console.log(`Server is running on localhost: ${port}`);
+}
+
+// GET route
+app.get("/all", sendData);
+
+function sendData(req, res) {
+  console.log(projectData);
+  res.send(projectData);
+}
+
+// POST route
+app.post("/data", addData);
+
+function addData(req, res) {
+  name = req.body.name;
+  console.log("Hier kommen die Daten an: "+name)
+  action();
+  res.send(projectData);
+}
+
+app.get('/', function (req, res) {
+  res.sendFile('dist/index.html')
+})
+
+
 // Function to fetch Latitude and Longitude from geoNamesURL.org
 const geoNamesURL = "http://api.geonames.org/searchJSON?",
-  username = "marcimarc11889",
-  name = "Berlin";
-let geo = {
-  lat: 0,
-  long: 0
-};
+  username = "marcimarc11889"
 
-const getLatLon = async (name, geoNamesURL, username) => {
+
+const getLatLon = async () => {
   await fetch(`${geoNamesURL}q=${name}&maxRows=1&username=${username}`)
     .then(res => {
       const body = res.json();
@@ -128,33 +160,3 @@ const action = async () => {
     });
 };
 
-action();
-
-// Setup Server
-
-const port = 3000;
-
-const server = app.listen(port, listening);
-function listening() {
-  console.log(server);
-  console.log(`Server is running on localhost: ${port}`);
-}
-
-// GET route
-app.get("/all", sendData);
-
-function sendData(req, res) {
-  console.log(projectData);
-  res.send(projectData);
-}
-
-// POST route
-app.post("/data", addData);
-
-function addData(req, res) {
-  res.send(projectData);
-}
-
-app.get('/', function (req, res) {
-  res.sendFile('dist/index.html')
-})
