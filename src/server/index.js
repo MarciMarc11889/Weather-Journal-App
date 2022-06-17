@@ -26,7 +26,7 @@ app.use(cors(""));
 app.use(express.static("dist"));
 
 // To avoid an error with ssl-certificate
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 // Function to fetch Latitude and Longitude from geoNamesURL.org
 const geoNamesURL = "http://api.geonames.org/searchJSON?",
@@ -103,7 +103,7 @@ const apiKeyPixabay = "key=27995832-6c0e40861203c9351e312e73c&",
 
 const getPic = async () => {
   await fetch(`${pixaBayURL}${apiKeyPixabay}${destination}&image_type=photo`)
-    .then(res => {
+    .then((res) => {
       const body = res.json();
       return body;
     })
@@ -117,14 +117,14 @@ const getPic = async () => {
 
 const action = async () => {
   await getLatLon(name, geoNamesURL, username)
-    .then(() => {
-      getCurrentWeather();
+    .then(async () => {
+      await getCurrentWeather();
     })
-    .then(() => {
-      getFutureWeather();
+    .then(async () => {
+      await getFutureWeather();
     })
-    .then(() => {
-      getPic();
+    .then(async () => {
+      await getPic();
     });
 };
 
