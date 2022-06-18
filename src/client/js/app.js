@@ -1,11 +1,10 @@
-import { builtinModules } from "module";
 
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
 
 // Listen to "Generate" Button
-document.getElementById("submit").addEventListener("click", performAction);
+// document.getElementById("submit").addEventListener("click", performAction);
 
 // Function after clicking on "Generate"
 function performAction(e) {
