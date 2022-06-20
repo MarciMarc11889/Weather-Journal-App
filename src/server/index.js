@@ -29,7 +29,7 @@ app.use(cors(""));
 app.use(express.static("dist"));
 
 // To avoid an error with ssl-certificate
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 // Setup Server
 
@@ -54,7 +54,7 @@ app.post("/data", addData);
 
 function addData(req, res) {
   name = req.body.name;
-  console.log("Hier kommen die Daten an: "+name)
+  console.log("Hier kommen die Daten an: " + name)
   action();
   res.send(projectData);
 }
