@@ -3,6 +3,9 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const express = require("express");
+const dotenv = require('dotenv');
+dotenv.config();
+
 
 let name = "",
     geo = {
@@ -67,12 +70,10 @@ app.get('/', function (req, res) {
 
 
 // Function to fetch Latitude and Longitude from geoNamesURL.org
-const geoNamesURL = "http://api.geonames.org/searchJSON?",
-  username = "marcimarc11889"
-
+const geoNamesURL = "http://api.geonames.org/searchJSON?"
 
 const getLatLon = async () => {
-  await fetch(`${geoNamesURL}q=${name}&maxRows=1&username=${username}`)
+  await fetch(`${geoNamesURL}q=${name}&maxRows=1&username=${process.env.geoNamesUsername}`)
     .then(res => {
       const body = res.json();
       return body;
@@ -91,13 +92,12 @@ const getLatLon = async () => {
 };
 
 // Function to fetch Current Weather from weatherbit.io
-const CurrentWeatherURL = "https://api.weatherbit.io/v2.0/current?", //Only supports GET request
-  apiKeyWeatherbitkey = "2130296c39a7402da71ece28eff267f9";
+const CurrentWeatherURL = "https://api.weatherbit.io/v2.0/current?" //Only supports GET request
 
 //example: https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=API_KEY&include=minutely
 
 const getCurrentWeather = async () => {
-  await fetch(`${CurrentWeatherURL}&lat=${geo.lat}&lon=${geo.long}&key=${apiKeyWeatherbitkey}`)
+  await fetch(`${CurrentWeatherURL}&lat=${geo.lat}&lon=${geo.long}&key=${process.env.apiKeyWeatherbitkey}`)
     .then(res => {
       const body = res.json();
       return body;
@@ -117,9 +117,7 @@ const FutureURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
 // example:https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=API_KEY
 
 const getFutureWeather = async () => {
-  await fetch(
-    `${FutureURL}&lat=${geo.lat}&lon=${geo.long}&key=${apiKeyWeatherbitkey}`
-  )
+  await fetch(`${FutureURL}&lat=${geo.lat}&lon=${geo.long}&key=${process.env.apiKeyWeatherbitkey}`)
     .then(res => {
       const body = res.json();
       return body;
@@ -136,11 +134,11 @@ const getFutureWeather = async () => {
 
 // example: https://pixabay.com/api/?key=27995832-6c0e40861203c9351e312e73c&q=yellow+flowers&image_type=photo
 
-const apiKeyPixabay = "key=27995832-6c0e40861203c9351e312e73c&",
-  pixaBayURL = "https://pixabay.com/api/?";
+// const apiKeyPixabay = "key=27995832-6c0e40861203c9351e312e73c&",
+  const pixaBayURL = "https://pixabay.com/api/?";
 
 const getPic = async () => {
-  await fetch(`${pixaBayURL}${apiKeyPixabay}q=${name}&image_type=photo`)
+  await fetch(`${pixaBayURL}${process.env.apiKeyPixabay}q=${name}&image_type=photo`)
     .then((res) => {
       const body = res.json();
       return body;
