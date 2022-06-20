@@ -139,11 +139,10 @@ const getFutureWeather = async () => {
 // example: https://pixabay.com/api/?key=27995832-6c0e40861203c9351e312e73c&q=yellow+flowers&image_type=photo
 
 const apiKeyPixabay = "key=27995832-6c0e40861203c9351e312e73c&",
-  pixaBayURL = "https://pixabay.com/api/?",
-  destination = `q=${name}`;
+  pixaBayURL = "https://pixabay.com/api/?";
 
 const getPic = async () => {
-  await fetch(`${pixaBayURL}${apiKeyPixabay}${destination}&image_type=photo`)
+  await fetch(`${pixaBayURL}${apiKeyPixabay}q=${name}&image_type=photo`)
     .then((res) => {
       const body = res.json();
       return body;
