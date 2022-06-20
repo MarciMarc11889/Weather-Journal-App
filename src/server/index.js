@@ -62,7 +62,7 @@ async function addData(req, res) {
   console.log(JSON.stringify(name),JSON.stringify(date))
   await action()
   projectData ={
-    picture: picURL
+    "picture": picURL
   }
   res.send(projectData)
 }
