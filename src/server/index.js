@@ -4,11 +4,12 @@ const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const express = require("express");
 
-let name = "";
-let geo = {
-  lat: 0,
-  long: 0
-};
+let name = "",
+    geo = {
+      lat: 0,
+      long: 0
+  },
+    date = "01.01.2022"
 
 // Reset variable projectData
 projectData = {};
@@ -53,8 +54,9 @@ function sendData(req, res) {
 app.post("/data", addData);
 
 function addData(req, res) {
-  name = req.body.name;
-  console.log("Hier kommen die Daten an: " + name)
+  name = req.body.destination;
+  date = req.body.date
+  console.log(JSON.stringify(name),JSON.stringify(date))
   action();
   res.send(projectData);
 }
@@ -148,7 +150,7 @@ const getPic = async () => {
 };
 
 const action = async () => {
-  await getLatLon(name, geoNamesURL, username)
+  await getLatLon()
     .then(async () => {
       await getCurrentWeather();
     })
