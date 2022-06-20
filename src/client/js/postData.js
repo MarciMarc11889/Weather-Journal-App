@@ -1,4 +1,5 @@
 
+let newData={}
 const postData = async (url = "", data = {}) => {
   console.log(data);
   const response = await fetch(url, {
@@ -10,7 +11,7 @@ const postData = async (url = "", data = {}) => {
     body: JSON.stringify(data) // body data type must match "Content-Type" header
   })
     .then(async (response) => {
-      const newData = await response.json()
+      newData = await response.json()
       console.log(newData)
     })
     .catch((error) => {
@@ -20,4 +21,7 @@ const postData = async (url = "", data = {}) => {
 };
 
 
-export {postData}
+export {
+  postData,
+  newData
+}
