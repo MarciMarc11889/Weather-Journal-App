@@ -56,12 +56,15 @@ function sendData(req, res) {
 // POST route
 app.post("/data", addData);
 
-function addData(req, res) {
+async function addData(req, res) {
   name = req.body.destination;
   date = req.body.date
   console.log(JSON.stringify(name),JSON.stringify(date))
-  action();
-  res.send(projectData);
+  await action()
+  projectData ={
+    picture: picURL
+  }
+  res.send(projectData)
 }
 
 app.get('/', function (req, res) {
@@ -132,10 +135,10 @@ const getFutureWeather = async () => {
     });
 };
 
-// example: https://pixabay.com/api/?key=27995832-6c0e40861203c9351e312e73c&q=yellow+flowers&image_type=photo
+// example: https://pixabay.com/api/?key=***************=yellow+flowers&image_type=photo
 
-// const apiKeyPixabay = "key=27995832-6c0e40861203c9351e312e73c&",
   const pixaBayURL = "https://pixabay.com/api/?";
+  let   picURL="";
 
 const getPic = async () => {
   await fetch(`${pixaBayURL}${process.env.apiKeyPixabay}q=${name}&image_type=photo`)
@@ -145,7 +148,8 @@ const getPic = async () => {
     })
     .then(body => {
       console.log('============Pixabay=============')
-      console.log(body.hits[0]);
+      console.log(body.hits[0].webformatURL);
+      picURL  = body.hits[0].webformatURL;
       console.log('============Pixabay End=============')
     })
     .catch(error => {
@@ -163,6 +167,6 @@ const action = async () => {
     })
     .then(async () => {
       await getPic();
-    });
+    })
 };
 
