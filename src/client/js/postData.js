@@ -9,7 +9,7 @@ const postData = async (url = "", data = {}) => {
     },
     body: JSON.stringify(data) // body data type must match "Content-Type" header
   })
-    .then(async () => {
+    .then(async (response) => {
       const newData = await response.json()
       console.log(newData)
     })
