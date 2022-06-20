@@ -78,9 +78,12 @@ const getLatLon = async () => {
       return body;
     })
     .then(body => {
-      geo.long = body.geonames[0].lng;
-      geo.lat = body.geonames[0].lat;
-      console.log(`The Geo Data is: ${geo}`);
+      console.log('============Get Geo Data=============')
+      geo.long = body.geonames[0].lng
+      geo.lat = body.geonames[0].lat
+      console.log(geo)
+      console.log('============Get Geo Data End =============')
+
     })
     .catch(error => {
       console.log("error", error);
@@ -102,7 +105,9 @@ const getCurrentWeather = async () => {
       return body;
     })
     .then(body => {
-      console.log(`The current weather is: ${body}`);
+      console.log('============Current Weather=============')
+      console.log(body)
+      console.log('============Current Weather End=============')
     })
     .catch(error => {
       console.log("error", error);
@@ -122,7 +127,9 @@ const getFutureWeather = async () => {
       return body;
     })
     .then(body => {
-      console.log(`The future weather is ${body}`);
+      console.log('============Future Weather=============')
+      console.log(body);
+      console.log('============Future Weather End=============')
     })
     .catch(error => {
       console.log("error", error);
@@ -142,7 +149,9 @@ const getPic = async () => {
       return body;
     })
     .then(body => {
-      console.log(`The example picture: ${body.hits[0]}`);
+      console.log('============Pixabay=============')
+      console.log(body.hits[0]);
+      console.log('============Pixabay End=============')
     })
     .catch(error => {
       console.log("error", error);
