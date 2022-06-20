@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Cors for cross origin allowance
-app.use(cors(""));
+app.use(cors());
 
 // Initialize the main project folder
 app.use(express.static("dist"));
@@ -97,9 +97,7 @@ const CurrentWeatherURL = "https://api.weatherbit.io/v2.0/current?", //Only supp
 //example: https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=API_KEY&include=minutely
 
 const getCurrentWeather = async () => {
-  await fetch(
-    `${CurrentWeatherURL}&lat=${geo.lat}&lon=${geo.long}&key=${apiKeyWeatherbitkey}`
-  )
+  await fetch(`${CurrentWeatherURL}&lat=${geo.lat}&lon=${geo.long}&key=${apiKeyWeatherbitkey}`)
     .then(res => {
       const body = res.json();
       return body;
