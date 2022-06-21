@@ -5,7 +5,7 @@ let newDate = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
 
 
 
-// Function after clicking on "Generate". Eventlistener on HTML-side
+// Function after clicking on "Submit". Eventlistener on HTML-side
 async function performAction(e) {
   const APIdata = {
     destination: document.getElementById("dest").value,
@@ -13,7 +13,20 @@ async function performAction(e) {
   }
   console.log(APIdata)
   await Client.postData("//localhost:3000/data", APIdata)
-  .then(() =>{console.log(Client.newData)
+  .then(() =>{
+    const pic = Client.newData
+    console.log(pic.picture)
+    return pic
+  })
+  .then(async (pic) => {
+    console.log(pic.picture)
+    let x = document.createElement("IMG")
+    x.setAttribute("src", pic.picture)
+    x.setAttribute("width", "304")
+    x.setAttribute("height", "228")
+    x.setAttribute("id", "picutre")
+    x.setAttribute("alt", "Picture of city")
+  document.body.appendChild(x)
   })
 }
 

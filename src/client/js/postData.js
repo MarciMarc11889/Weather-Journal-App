@@ -12,7 +12,6 @@ const postData = async (url = "", data = {}) => {
   })
     .then(async (response) => {
       newData = await response.json()
-      console.log(newData)
     })
     .catch((error) => {
       // appropriately handle the error
