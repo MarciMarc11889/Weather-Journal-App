@@ -1,38 +1,41 @@
 body {
   background: #3b4a6b;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-}
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
 
 #app {
   display: grid;
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas:
-    "hd hd hd"
-    "des des des"
-    "dat dat dat"
-    "ft ft ft";
+  grid-template-areas: "hd hd hd"
+ "des dat res"
+ "des dat res"
+ "des dat res"
+ "des dat res";
   height: 98vh;
-  width: 98vw;
+  width: 96vw;
   background: #f23557;
   color: #f0d43a;
   font-size: 20px;
   font-family: "Oswald", sans-serif;
   transition: ease 1s;
-  border-radius: 10px;
-}
+  border-radius: 10px; }
 
 .holder {
   margin: 20px;
-  transition: all 1s;
-}
+  transition: all 1s; }
 
 .entry {
-  display: block;
-  grid-area: ft;
+  display: flex;
+  flex-direction: column;
+  grid-area: res;
   margin: 20px;
   background: rgba(59, 74, 107, 0.4);
-  border-radius: 10px;
+  border-radius: 10px; }
+
+#picture {
+  display: flex;
+  height: 45vh;
+  border-radius:10px;
 }
 
 .date {
@@ -40,66 +43,54 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-}
+  justify-content: top; }
 
 .dest {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
   padding: 10px;
-  grid-area: des;
-}
+  grid-area: des; }
 
 #entryHolder {
-  margin: 20px;
-}
+  margin: 20px; }
 
 #date {
-  color: rgb(87, 196, 230);
-}
+  color: #57c4e6; }
 
 .fade {
   left: 50%;
   animation: fadeIn 2s;
-  position: relative;
-}
+  position: relative; }
 
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    left: -200px;
-  }
+    left: -200px; }
   100% {
     opacity: 1;
-    left: 50%;
-  }
-}
+    left: 50%; } }
 
 #temp {
-  color: rgb(87, 196, 230);
-}
+  color: #57c4e6; }
 
 #content {
-  color: rgb(87, 196, 230);
-}
+  color: #57c4e6; }
 
 .headline {
   font-size: 50px;
   margin: 20px;
-  grid-area: hd;
-}
+  grid-area: hd; }
+
 .title {
   margin: 20px;
-  grid-area: ft;
-}
+  grid-area: ft; }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label {
   margin: 20px;
-  font-size: 27px;
-}
+  font-size: 27px; }
 
 input {
   height: 60px;
@@ -109,8 +100,7 @@ input {
   font-size: 20px;
   font-family: "Oswald", sans-serif;
   border: none;
-  border-radius: 10px;
-}
+  border-radius: 10px; }
 
 button {
   margin: 10px;
@@ -123,18 +113,15 @@ button {
   border: none;
   border-radius: 10px;
   box-shadow: 2px 4px 5px #444;
-  transition: ease 1s;
-}
+  transition: ease 1s; }
 
 button:hover {
   background: #84a5ed;
   width: 12vw;
-  height: 6vh;
-}
+  height: 6vh; }
 
 h1 {
-  font-size: 36px;
-}
+  font-size: 36px; }
 
 textarea {
   resize: none;
@@ -145,32 +132,29 @@ textarea {
   color: #f0d43a;
   font-size: 20px;
   font-family: "Oswald", sans-serif;
-  border-radius: 10px;
-}
+  border-radius: 10px; }
+
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
 textarea:focus {
-  outline: solid;
-}
+  outline: solid; }
+
 /* Style for Placeholder Text*/
 ::placeholder {
   /* Firefox, Chrome, Opera */
   padding: 10px;
   color: #f0d43a;
-  font-family: "Oswald", sans-serif;
-}
+  font-family: "Oswald", sans-serif; }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   margin: 5px;
   color: #f0d43a;
-  font-family: "Oswald", sans-serif;
-}
+  font-family: "Oswald", sans-serif; }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   margin: 5px;
   color: #f0d43a;
-  font-family: "Oswald", sans-serif;
-}
+  font-family: "Oswald", sans-serif; }
