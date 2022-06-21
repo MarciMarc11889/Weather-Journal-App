@@ -25,8 +25,6 @@ async function performAction(e) {
     }
     const x = document.createElement("IMG")
     x.setAttribute("src", pic.picture)
-    x.setAttribute("width", "304")
-    x.setAttribute("height", "228")
     x.setAttribute("id", "picture")
     x.setAttribute("alt", "Picture of city")
     document.getElementById("pic").appendChild(x)
