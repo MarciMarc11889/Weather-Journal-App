@@ -23,16 +23,13 @@ async function performAction(e) {
     if (existingPic.hasChildNodes()) {
       document.getElementById("picture").remove()
     }
-  
-    
-   
     const x = document.createElement("IMG")
     x.setAttribute("src", pic.picture)
     x.setAttribute("width", "304")
     x.setAttribute("height", "228")
-    x.setAttribute("id", "picutre")
+    x.setAttribute("id", "picture")
     x.setAttribute("alt", "Picture of city")
-  document.getElementById("pic").appendChild(x)
+    document.getElementById("pic").appendChild(x)
   })
 }
 
