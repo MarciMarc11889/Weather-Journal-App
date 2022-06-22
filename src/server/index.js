@@ -56,6 +56,7 @@ function sendData(req, res) {
 // POST route
 app.post("/data", addData);
 
+// function after pressing the "submit button"
 async function addData(req, res) {
   name = req.body.destination;
   date = req.body.date
