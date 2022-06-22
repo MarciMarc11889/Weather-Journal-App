@@ -62,7 +62,7 @@ app.post("/data", addData);
 // function after pressing the "submit button"
 async function addData(req, res) {
   name = req.body.destination;
-  date = req.body.date
+  date = new Date (req.body.date)
   console.log(date)
   console.log(JSON.stringify(name),JSON.stringify(date))
   await action()
@@ -164,6 +164,9 @@ const getPic = async () => {
 
 const action = async () => {
   await getLatLon()
+    .then( async () => {
+      await checkDate();
+    })
     .then(async () => {
       await getCurrentWeather();
     })
@@ -176,7 +179,11 @@ const action = async () => {
 };
 
 //function for checking date
-const checkDate = () =>{
+const checkDate = async () =>{
+  const year  = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day   = date.getDate()
 
+  console.log(`Hier steht das Jahr ${year}, hier der Monat ${month} und hier der Tag ${day}`)
 
 }
