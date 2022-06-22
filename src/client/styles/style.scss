@@ -43,25 +43,6 @@ body {
       transition: ease 1s;
       border-radius: 10px;
     }
-    button {
-      margin: 40px;
-      width: 100px;
-      height: 50px;
-      background: #3b4a6b;
-      color: #f0d43a;
-      font-size: 3vh;
-      font-family: "Oswald", sans-serif;
-      border: none;
-      border-radius: 10px;
-      box-shadow: 2px 4px 5px #444;
-      transition: ease 0.5s; 
-    }
-    button:hover {
-      background: #84a5ed;
-      color: #ee4300;
-      width: 110px;
-      height: 60px; }
-
   }
 
 .holder {
@@ -153,7 +134,7 @@ input {
 
 button {
   margin: 50px;
-  width: 300px;
+  width: 200px;
   height: 100px;
   background: #3b4a6b;
   color: #f0d43a;
@@ -168,7 +149,7 @@ button {
 button:hover {
   background: #84a5ed;
   color: #ee4300;
-  width: 310px;
+  width: 210px;
   height: 110px; }
 
 h1 {
