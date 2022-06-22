@@ -6,6 +6,9 @@ const express = require("express");
 const dotenv = require('dotenv');
 dotenv.config();
 
+// Create a new date instance dynamically with JS
+let d = new Date();
+let newDate = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
 
 let name = "",
     geo = {
@@ -60,6 +63,7 @@ app.post("/data", addData);
 async function addData(req, res) {
   name = req.body.destination;
   date = req.body.date
+  console.log(date)
   console.log(JSON.stringify(name),JSON.stringify(date))
   await action()
   projectData ={
@@ -171,3 +175,8 @@ const action = async () => {
     })
 };
 
+//function for checking date
+const checkDate = () =>{
+
+
+}
