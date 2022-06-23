@@ -7,8 +7,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
+let d           = new Date(),
+    todayYear   = d.getFullYear(),
+    todayMonth  = d.getMonth() +1,
+    todayDay    = d.getDate();
+
+console.log(`Heute ist der ${todayDay}.${todayMonth}.${todayYear}`)
 
 let name = "",
     geo = {
@@ -185,5 +189,7 @@ const checkDate = async () =>{
   const day   = date.getDate()
 
   console.log(`Hier steht das Jahr ${year}, hier der Monat ${month} und hier der Tag ${day}`)
+
+
 
 }
