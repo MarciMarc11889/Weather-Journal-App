@@ -7,19 +7,21 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // Create a new date instance dynamically with JS
-let d           = new Date(),
-    todayYear   = d.getFullYear(),
-    todayMonth  = d.getMonth() +1,
-    todayDay    = d.getDate();
+let getDate         = new Date,
+    year            = getDate.getFullYear(),
+    month           = getDate.getMonth(),
+    day             = getDate.getDate(),
+    today           = new Date(year, month, day),
+    timeOffset      = getDate.getTimezoneOffset()*60*1000
 
-console.log(`Heute ist der ${todayDay}.${todayMonth}.${todayYear}`)
+
+console.log(`Heute ist der ${today}`)
 
 let name = "",
     geo = {
       lat: 0,
       long: 0
-  },
-    date = "01.01.2022"
+  }
 
 // Reset variable projectData
 projectData = {};
@@ -66,9 +68,9 @@ app.post("/data", addData);
 // function after pressing the "submit button"
 async function addData(req, res) {
   name = req.body.destination;
-  date = new Date (req.body.date)
-  console.log(date)
-  console.log(JSON.stringify(name),JSON.stringify(date))
+  enteredDate = new Date (req.body.date)
+  console.log(enteredDate)
+  console.log(JSON.stringify(name),JSON.stringify(enteredDate))
   await action()
   projectData ={
     "picture": picURL
@@ -184,11 +186,13 @@ const action = async () => {
 
 //function for checking date
 const checkDate = async () =>{
-  const year  = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day   = date.getDate()
+  const future=false,
+        past=false,
+        diff= (enteredDate -today)+timeOffset,
+        diffDays= diff/1000/60/60/24
+  
 
-  console.log(`Hier steht das Jahr ${year}, hier der Monat ${month} und hier der Tag ${day}`)
+  console.log(`Hier steht die Zeit-Differenz in Tagen: ${diffDays}`)
 
 
 
