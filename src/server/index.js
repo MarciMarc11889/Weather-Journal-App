@@ -12,8 +12,9 @@ let getDate         = new Date,
     month           = getDate.getMonth(),
     day             = getDate.getDate(),
     today           = new Date(year, month, day),
-    timeOffset      = getDate.getTimezoneOffset()*60*1000
-
+    timeOffset      = getDate.getTimezoneOffset()*60*1000, // Get the timezone in minutes. Has to be changed to milliseconds (*60*1000)
+    future          = false,
+    past            = false
 
 console.log(`Heute ist der ${today}`)
 
@@ -173,24 +174,42 @@ const action = async () => {
     .then( async () => {
       await checkDate();
     })
-    .then(async () => {
-      await getCurrentWeather();
-    })
-    .then(async () => {
-      await getFutureWeather();
+    .then( async () => {
+      if (past === true) {
+        console.log('Entered Date is in the past')
+      }
+      else if (future===true) {
+        await getFutureWeather()
+      }
+      else {
+        await getCurrentWeather()
+      }
     })
     .then(async () => {
       await getPic();
     })
+    // .then(async () => {
+    //   await getCurrentWeather();
+    // })
+    // .then(async () => {
+    //   await getFutureWeather();
+    // })
+    
 };
 
 //function for checking date
 const checkDate = async () =>{
-  const future=false,
-        past=false,
-        diff= (enteredDate -today)+timeOffset,
-        diffDays= diff/1000/60/60/24
-  
+  const diff            = (enteredDate -today)+timeOffset,
+        diffDays        = diff/1000/60/60/24
+  future          =false
+  past            =false
+
+  if (diffDays < 0) {
+    past=true
+  }
+  else if (diffDays > 7){
+    future=true
+  }
 
   console.log(`Hier steht die Zeit-Differenz in Tagen: ${diffDays}`)
 
