@@ -14,7 +14,12 @@ let getDate         = new Date,
     today           = new Date(year, month, day),
     timeOffset      = getDate.getTimezoneOffset()*60*1000, // Get the timezone in minutes. Has to be changed to milliseconds (*60*1000)
     future          = false,
-    past            = false
+    past            = false,
+    temp            = 0,
+    icon            ='',
+    description     ='',
+    picURL          =""
+
 
 console.log(`Heute ist der ${today}`)
 
@@ -25,7 +30,8 @@ let name = "",
   }
 
 // Reset variable projectData
-projectData = {};
+let projectData={
+};
 
 // Start up an instance of app
 const app = express();
@@ -74,8 +80,12 @@ async function addData(req, res) {
   console.log(JSON.stringify(name),JSON.stringify(enteredDate))
   await action()
   projectData ={
-    "picture": picURL
+    picURL,
+    temp,
+    iconURL: `https://www.weatherbit.io/static/img/icons/${icon}.png`,
+    description
   }
+  console.log(projectData)
   res.send(projectData)
 }
 
@@ -119,7 +129,10 @@ const getCurrentWeather = async () => {
     })
     .then(body => {
       console.log('============Current Weather=============')
-      console.log(body)
+      temp        = body.data[0].temp
+      icon        = body.data[0].weather.icon
+      description = body.data[0].weather.description
+      console.log(projectData)
       console.log('============Current Weather End=============')
     })
     .catch(error => {
@@ -139,7 +152,10 @@ const getFutureWeather = async () => {
     })
     .then(body => {
       console.log('============Future Weather=============')
-      console.log(body);
+        temp        = body.data[0].temp
+        icon        = body.data[0].weather.icon
+        description = body.data[0].weather.description
+      console.log(projectData)
       console.log('============Future Weather End=============')
     })
     .catch(error => {
@@ -150,7 +166,6 @@ const getFutureWeather = async () => {
 // example: https://pixabay.com/api/?key=***************=yellow+flowers&image_type=photo
 
   const pixaBayURL = "https://pixabay.com/api/?";
-  let   picURL="";
 
 const getPic = async () => {
   await fetch(`${pixaBayURL}${process.env.apiKeyPixabay}q=${name}&image_type=photo`)

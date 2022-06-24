@@ -8,20 +8,33 @@ async function performAction(e) {
   console.log(APIdata)
   await Client.postData("//localhost:3000/data", APIdata)
   .then(() =>{
-    const pic = Client.newData
-    return pic
+    const receivedData = Client.newData
+    return receivedData
   })
-  .then((pic) => {
-    console.log(pic.picture)
+  .then((receivedData) => {
+    console.log(receivedData.picURL)
+    console.log(receivedData)
     const existingPic  = document.getElementById("pic")
     if (existingPic.hasChildNodes()) {
       document.getElementById("picture").remove()
+      document.getElementById("icon").remove()
     }
-    const x = document.createElement("IMG")
-    x.setAttribute("src", pic.picture)
-    x.setAttribute("id", "picture")
-    x.setAttribute("alt", "Picture of city")
-    document.getElementById("pic").appendChild(x)
+    const pic = document.createElement("IMG")
+    pic.setAttribute("src", receivedData.picURL)
+    pic.setAttribute("id", "picture")
+    pic.setAttribute("alt", "Picture of city")
+    document.getElementById("pic").appendChild(pic)
+
+    const icon = document.createElement("IMG")
+    icon.setAttribute("src", receivedData.iconURL)
+    icon.setAttribute("id", "icon")
+    icon.setAttribute("alt", "Icon")
+    document.getElementById("icon").appendChild(icon)
+
+    document.getElementById("weather").innerHTML  = receivedData.description
+
+    document.getElementById("temp").innerHTML     = `Temperature: ${receivedData.temp} °C`
+
   })
 }
 
