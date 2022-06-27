@@ -31,7 +31,9 @@ async function performAction(e) {
     icon.setAttribute("alt", "Icon")
     document.getElementById("ic").appendChild(icon)
 
-    document.getElementById("weather").innerHTML  =  receivedData.datetime + "<br>" + receivedData.description
+    
+    document.getElementById("weather").innerHTML    =  receivedData.description
+    document.getElementById("rdate").innerHTML  =  receivedData.datetime.slice(0,10) 
     document.getElementById("temp").innerHTML     = `Temperature: ${receivedData.temp} °C`
 
   })
