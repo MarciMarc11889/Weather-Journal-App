@@ -17,8 +17,8 @@ body {
                         ".";
   min-height: 98vh;
   width: 98vw;
-  background: #f23557;
-  color: #f0d43a;
+  background: #6f9ac9;
+  color: #ff9900;
   font-size: 20px;
   font-family: "Oswald", sans-serif;
   transition: ease 1s;
@@ -34,8 +34,8 @@ body {
      "des dat res"
      "des dat res"
      "des dat res";
-      background: #f23557;
-      color: #f0d43a;
+      background: #6f9ac9;
+      color: #ff9900;
       min-height: 98vh;
       font-size: 20px;
       font-family: "Oswald", sans-serif;
@@ -87,9 +87,6 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
-#date {
-  color: #57c4e6; }
 
 .fade {
   left: 50%;
@@ -155,8 +152,8 @@ button {
 }
 
 button:hover {
-  background: #84a5ed;
-  color: #ee4300;
+  background: #566c9b;
+  color: #ff9900;
 }
 
 h1 {
@@ -168,7 +165,7 @@ textarea {
   max-width: 30vw;
   margin: 10px;
   background: #22b2da;
-  color: #f0d43a;
+  color: #ff9900;
   font-size: 20px;
   font-family: "Oswald", sans-serif;
   border-radius: 10px; }
