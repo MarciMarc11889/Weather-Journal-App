@@ -1,4 +1,4 @@
-//Set Date Selector to min=0 Days and max= +16 days
+//Function to set the Date Selector to min=0 Days and max= +16 days
 
 const setDateLimits = () => {
 let getDate         = new Date(),

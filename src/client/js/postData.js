@@ -1,5 +1,6 @@
-
+//Create a global variable to handle the received data from the server
 let newData={}
+
 const postData = async (url = "", data = {}) => {
   console.log(data);
   const response = await fetch(url, {

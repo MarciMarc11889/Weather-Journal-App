@@ -1,3 +1,4 @@
+//Define all dependencies
 var path = require("path");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -20,16 +21,15 @@ let getDate         = new Date,
     description     ='',
     datetime        ='',
     picURL          ="",
-    diffDays        =0
-
-
-console.log(`Heute ist der ${today}`)
-
-let name = "",
+    diffDays        =0,
+    name = "",
     geo = {
       lat: 0,
       long: 0
   }
+
+// Check date in console 
+console.log(`Heute ist der ${today}`)
 
 // Reset variable projectData
 let projectData={};
@@ -62,7 +62,7 @@ function listening() {
   console.log(`Server is running on localhost: ${port}`);
 }
 
-// GET route
+// GET route (not needed for this project)
 app.get("/all", sendData);
 
 function sendData(req, res) {
@@ -73,13 +73,23 @@ function sendData(req, res) {
 // POST route
 app.post("/data", addData);
 
-// function after pressing the "submit button"
+// function data was submitted to the server
 async function addData(req, res) {
-  name = req.body.destination;
+
+  //put destination value to name
+  name = req.body.destination
+
+  //put date value to enteredDate
   enteredDate = new Date (req.body.date)
+
+  //check Data in console
   console.log(enteredDate)
   console.log(JSON.stringify(name),JSON.stringify(enteredDate))
+
+  //Execute the action function
   await action()
+
+  //put all the API data to one object
   projectData ={
     picURL,
     temp,
@@ -87,13 +97,13 @@ async function addData(req, res) {
     description,
     datetime
   }
+
+  //check object
   console.log(projectData)
+
+  //send object to client
   res.send(projectData)
 }
-
-app.get('/', function (req, res) {
-  res.sendFile('dist/index.html')
-})
 
 
 // Function to fetch Latitude and Longitude from geoNamesURL.org
@@ -142,6 +152,8 @@ const getCurrentWeather = async () => {
     });
 };
 
+// Function to fetch Future Weather from weatherbit.io
+
 const FutureURL = "https://api.weatherbit.io/v2.0/forecast/daily?";
 
 // example:https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=API_KEY
@@ -165,6 +177,8 @@ const getFutureWeather = async () => {
     });
 };
 
+// Function to fetch Picture from pixabay.com
+
 // example: https://pixabay.com/api/?key=***************=yellow+flowers&image_type=photo
 
   const pixaBayURL = "https://pixabay.com/api/?";
@@ -186,6 +200,7 @@ const getPic = async () => {
     });
 };
 
+//Define the action() function
 const action = async () => {
   await getLatLon()
     .then( async () => {
@@ -205,13 +220,6 @@ const action = async () => {
     .then(async () => {
       await getPic();
     })
-    // .then(async () => {
-    //   await getCurrentWeather();
-    // })
-    // .then(async () => {
-    //   await getFutureWeather();
-    // })
-    
 };
 
 //function for checking date
@@ -228,8 +236,10 @@ const checkDate = async () =>{
     future=true
   }
 
+  //Check the value of diffDays in console
   console.log(`Hier steht die Zeit-Differenz in Tagen: ${diffDays}`)
   
 }
 
+//Export for jest
 module.exports = {checkDate}
