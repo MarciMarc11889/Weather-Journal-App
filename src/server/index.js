@@ -6,7 +6,7 @@ const express = require("express");
 const dotenv = require('dotenv');
 dotenv.config();
 
-// Create a new date instance dynamically with JS
+// Define all Variables
 let getDate         = new Date,
     year            = getDate.getFullYear(),
     month           = getDate.getMonth(),
@@ -18,7 +18,9 @@ let getDate         = new Date,
     temp            = 0,
     icon            ='',
     description     ='',
-    picURL          =""
+    datetime        ='',
+    picURL          ="",
+    diffDays        =0
 
 
 console.log(`Heute ist der ${today}`)
@@ -83,7 +85,8 @@ async function addData(req, res) {
     picURL,
     temp,
     iconURL: `https://www.weatherbit.io/static/img/icons/${icon}.png`,
-    description
+    description,
+    datetime
   }
   console.log(projectData)
   res.send(projectData)
@@ -132,7 +135,7 @@ const getCurrentWeather = async () => {
       temp        = body.data[0].temp
       icon        = body.data[0].weather.icon
       description = body.data[0].weather.description
-      console.log(projectData)
+      datetime    = body.data[0].datetime
       console.log('============Current Weather End=============')
     })
     .catch(error => {
@@ -152,10 +155,10 @@ const getFutureWeather = async () => {
     })
     .then(body => {
       console.log('============Future Weather=============')
-        temp        = body.data[0].temp
-        icon        = body.data[0].weather.icon
-        description = body.data[0].weather.description
-      console.log(projectData)
+      temp        = body.data[diffDays].temp
+      icon        = body.data[diffDays].weather.icon
+      description = body.data[diffDays].weather.description
+      datetime    = body.data[diffDays].datetime
       console.log('============Future Weather End=============')
     })
     .catch(error => {
@@ -214,7 +217,7 @@ const action = async () => {
 
 //function for checking date
 const checkDate = async () =>{
-  const diff            = (enteredDate -today)+timeOffset,
+  const diff            = (enteredDate -today)+timeOffset
         diffDays        = diff/1000/60/60/24
   future          =false
   past            =false
@@ -227,7 +230,7 @@ const checkDate = async () =>{
   }
 
   console.log(`Hier steht die Zeit-Differenz in Tagen: ${diffDays}`)
-
-
+  
+  return diffDays
 
 }
