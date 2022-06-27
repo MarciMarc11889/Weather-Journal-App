@@ -29,7 +29,7 @@ async function performAction(e) {
     icon.setAttribute("src", receivedData.iconURL)
     icon.setAttribute("id", "icon")
     icon.setAttribute("alt", "Icon")
-    document.getElementById("icon").appendChild(icon)
+    document.getElementById("ic").appendChild(icon)
 
     document.getElementById("weather").innerHTML  = receivedData.description
 
