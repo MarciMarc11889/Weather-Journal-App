@@ -15,7 +15,7 @@ body {
                         "res"
                         "."
                         ".";
-  height:max-content;
+  min-height: 98vh;
   width: 98vw;
   background: #f23557;
   color: #f0d43a;
@@ -24,7 +24,7 @@ body {
   transition: ease 1s;
   border-radius: 10px; }
 
-  @media (min-width: 950px) {
+  @media screen and (min-width: 1000px) {
     #app{
       display: grid;
       grid-template-rows: repeat(4, 1fr);
@@ -34,10 +34,9 @@ body {
      "des dat res"
      "des dat res"
      "des dat res";
-      height: 98vh;
-      width: 98vw;
       background: #f23557;
       color: #f0d43a;
+      min-height: 98vh;
       font-size: 20px;
       font-family: "Oswald", sans-serif;
       transition: ease 1s;
@@ -57,11 +56,11 @@ body {
   background: rgba(59, 74, 107, 0.4);
   border-radius: 10px; 
   box-shadow: 2px 4px 5px #444;
+  min-height: 40vh;
 }
 
 #picture {
   display: flex;
-  height: 45vh;
   border-radius:10px;
 }
 
@@ -81,7 +80,12 @@ body {
   grid-area: des; }
 
 #entryHolder {
-  margin: 20px; 
+  display: flex;
+  margin: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 #date {
@@ -138,7 +142,7 @@ button {
   height: 100px;
   background: #3b4a6b;
   color: #f0d43a;
-  font-size: 3vh;
+  font-size: 24px;
   font-family: "Oswald", sans-serif;
   border: none;
   border-radius: 10px;
@@ -146,11 +150,17 @@ button {
   transition: ease 0.5s; 
 }
 
+@media screen and (max-width: 1000px) {
+  button{
+  width: 80vw;
+  }
+
+}
+
 button:hover {
   background: #84a5ed;
   color: #ee4300;
-  width: 210px;
-  height: 110px; }
+}
 
 h1 {
   font-size: 36px; }

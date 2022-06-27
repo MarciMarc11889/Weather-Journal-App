@@ -46,7 +46,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Initialize the main project folder
-app.use(express.static("dist"));
+app.use(express.static('dist'));
 
 // To avoid an error with ssl-certificate
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
