@@ -42,7 +42,7 @@ async function performAction(e) {
 
     //Add all the weather data as string to the result
     document.getElementById("weather").innerHTML    =  receivedData.description
-    document.getElementById("rdate").innerHTML  =  receivedData.datetime.slice(0,10) 
+    document.getElementById("rdate").innerHTML  =  receivedData.datetime.slice(0,10) // has to be sliced, becaus api also sends time
     document.getElementById("temp").innerHTML     = `Temperature: ${receivedData.temp} °C`
 
   })
