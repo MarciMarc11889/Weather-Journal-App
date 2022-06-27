@@ -32,8 +32,7 @@ let name = "",
   }
 
 // Reset variable projectData
-let projectData={
-};
+let projectData={};
 
 // Start up an instance of app
 const app = express();
@@ -231,6 +230,6 @@ const checkDate = async () =>{
 
   console.log(`Hier steht die Zeit-Differenz in Tagen: ${diffDays}`)
   
-  return diffDays
-
 }
+
+module.exports = {checkDate}
