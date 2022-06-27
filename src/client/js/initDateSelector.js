@@ -5,7 +5,7 @@ let getDate         = new Date(),
     year            = getDate.getFullYear(),
     month           = getDate.getMonth(),
     day             = getDate.getDate(),
-    futureDate      = new Date(year,month,day +16),
+    futureDate      = new Date(year,month,day +15),
     futureYear      = futureDate.getFullYear(),
     futureDay       = futureDate.getDate(),
     futureMonth     = futureDate.getMonth(),
@@ -15,6 +15,7 @@ let getDate         = new Date(),
 const date = document.getElementById('date')
 date.setAttribute("min", today)
 date.setAttribute("max", future)
+date.setAttribute("value", today)
 }
 
 export {setDateLimits}
